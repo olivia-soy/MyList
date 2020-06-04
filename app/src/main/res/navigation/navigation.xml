@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/view_fragment">
+
+
+    <fragment
+        android:id="@+id/view_fragment"
+        android:name="net.soy.mylist.MainViewPageFragment"
+        tools:layout="@layout/fragment_main"
+        >
+        <action
+            android:id="@+id/action_all_list"
+            app:destination="@+id/fragment_all_list"/>
+        <action
+            android:id="@+id/action_my_list"
+            app:destination="@+id/fragment_my_list"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_all_list"
+        tools:layout="@layout/fragment_all_list"
+        android:name="net.soy.watermelon.view.AllListFragment"/>
+
+    <fragment
+        android:id="@+id/fragment_my_list"
+        tools:layout="@layout/fragment_my_list"
+        android:name="net.soy.watermelon.view.MyListFragment"/>
+</navigation>

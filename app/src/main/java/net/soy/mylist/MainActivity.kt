@@ -1,13 +1,14 @@
 package net.soy.mylist
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import net.soy.mylist.base.BaseActivity
+import net.soy.mylist.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+/**
+ * Class: MainActivity
+ * Created by leesoyoung on 2020/06/04.
+ *
+ * Description: nav_host
+ */
+class MainActivity : BaseActivity<ActivityMainBinding>(){
+    override var layoutResId: Int = R.layout.activity_main
 }
