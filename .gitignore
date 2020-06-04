@@ -12,6 +12,3 @@
 /captures
 .externalNativeBuild
 .cxx
-
-#api key
-/app/src/main/java/net/soy/mylist/Key.kt
