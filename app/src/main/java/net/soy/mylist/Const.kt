@@ -9,3 +9,4 @@ package net.soy.mylist
 
 const val ALL_LIST_INDEX = 0
 const val MY_LIST_INDEX = 1
+const val DB_NAME = "my_book.db"

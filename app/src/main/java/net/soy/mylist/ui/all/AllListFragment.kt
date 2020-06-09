@@ -1,14 +1,10 @@
-package net.soy.mylist.view
+package net.soy.mylist.ui.all
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import net.soy.mylist.R
 import net.soy.mylist.base.BaseFragment
 import net.soy.mylist.databinding.FragmentAllListBinding
-import net.soy.mylist.viewmodels.AllListViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +25,7 @@ class AllListFragment : BaseFragment<FragmentAllListBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewDataBinding.vm = getViewModel()
+        viewDataBinding.lifecycleOwner = this
         viewDataBinding.setClickListener {
             allListViewModel.searchBook(page)
         }

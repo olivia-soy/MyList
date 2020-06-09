@@ -9,7 +9,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="vm"
-            type="net.soy.mylist.viewmodels.AllListViewModel" />
+            type="net.soy.mylist.ui.all.AllListViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +47,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="20dp"
-            tools:listitem="@layout/item_book"
+            tools:listitem="@layout/item_all"
+            app:viewModel="@{vm}"
+            app:document="@{vm.documentLiveData}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -4,13 +4,13 @@ import net.soy.mylist.api.SearchServiceApi
 import net.soy.mylist.model.NetworkRepositoryImpl
 import net.soy.mylist.model.Repository
 import net.soy.mylist.model.RetrofitFactory
-import net.soy.mylist.viewmodels.AllListViewModel
+import net.soy.mylist.ui.all.AllListViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
 var viewModelPart = module {
     viewModel {
-        AllListViewModel(get())
+        AllListViewModel(get(), get())
     }
 }
 

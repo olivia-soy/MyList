@@ -17,7 +17,7 @@ abstract class BaseFragment<T: ViewDataBinding>: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewDataBinding =  DataBindingUtil.inflate<T>(inflater, layoutResId, container, false)
+        viewDataBinding =  DataBindingUtil.inflate(inflater, layoutResId, container, false)
         return viewDataBinding.root
     }
 

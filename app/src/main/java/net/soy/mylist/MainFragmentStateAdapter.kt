@@ -2,7 +2,8 @@ package net.soy.mylist
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import net.soy.mylist.view.AllListFragment
+import net.soy.mylist.ui.all.AllListFragment
+import net.soy.mylist.ui.my.MyListFragment
 import java.lang.IndexOutOfBoundsException
 
 /**
