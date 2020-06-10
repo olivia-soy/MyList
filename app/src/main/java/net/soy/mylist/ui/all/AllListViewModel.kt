@@ -5,11 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import net.soy.mylist.NotNullMutableLiveData
 import net.soy.mylist.base.BaseViewModel
+import net.soy.mylist.db.MyBook
 import net.soy.mylist.db.MyBookDao
 import net.soy.mylist.model.Repository
 import net.soy.mylist.model.request.BookSearchRequest
 import net.soy.mylist.model.response.BookSearchResponse
+import org.w3c.dom.Document
 
 /**
  * Class: AllListViewModel
@@ -29,11 +35,12 @@ class AllListViewModel(private val repository: Repository, private val dao: MyBo
     val bookSearchResponseLiveData: LiveData<BookSearchResponse>
         get() = _bookSearchResponseLiveData
 
-    private val _documentLiveData = MutableLiveData<List<BookSearchResponse.Document>>()
-    val documentLiveData: LiveData<List<BookSearchResponse.Document>>
+    private val _documentLiveData: NotNullMutableLiveData<List<BookSearchResponse.Document>> = NotNullMutableLiveData(arrayListOf())
+    val documentLiveData: NotNullMutableLiveData<List<BookSearchResponse.Document>>
         get() = _documentLiveData
 
-    fun searchBook(page: Int){
+    fun searchBook(){
+        val page = 1
         val bookSearchRequest = BookSearchRequest(query = query, sort = null, page = page, size = null, target = null)
 
         Log.w(TAG,"bookSearchRequest : $bookSearchRequest")
@@ -44,7 +51,7 @@ class AllListViewModel(private val repository: Repository, private val dao: MyBo
                 it.run {
                     if(documents.size > 0) {
                         Log.d(TAG, "document: $documents")
-                        _documentLiveData.postValue(this.documents)
+                        _documentLiveData.value = this.documents
 //                        _bookSearchResponseLiveData.postValue(this)
                     }
                     Log.d(TAG, "meta : $meta")
@@ -53,5 +60,13 @@ class AllListViewModel(private val repository: Repository, private val dao: MyBo
                 Log.d(TAG, "response error, message : ${it.message}")
             })
         )
+    }
+
+    fun addMyBook(document: BookSearchResponse.Document){
+
+        CoroutineScope(Dispatchers.IO).launch {
+            dao.insert(MyBook.to(document))
+        }
+
     }
 }

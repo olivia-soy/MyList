@@ -15,26 +15,28 @@ import net.soy.mylist.DB_NAME
  * Description:
  */
 @Database(entities = [MyBook::class], version = 1, exportSchema = false)
-abstract class MyDatabase : RoomDatabase(){
+abstract class MyDatabase : RoomDatabase() {
     abstract fun getMyBookDao(): MyBookDao
-    companion object{
 
-        lateinit var INSTANCE: MyDatabase
-        fun getInstance(context: Context): MyDatabase? {
-            if(INSTANCE == null){
-                synchronized(MyDatabase::class){
-                    INSTANCE = Room.databaseBuilder(
-                        context,
-                        MyDatabase::class.java,
-                        DB_NAME)
-//                        .addMigrations(MIGRATION_1_TO_2)
-                        .allowMainThreadQueries()
-                        .build()
+    companion object {
 
-                }
+        var INSTANCE: MyDatabase? = null
+        fun getInstance(context: Context): MyDatabase =
+            INSTANCE ?: synchronized(MyDatabase::class) {
+                INSTANCE ?: Room.databaseBuilder(
+                    context,
+                    MyDatabase::class.java,
+                    DB_NAME
+                )
+                        .addMigrations(MIGRATION_1_TO_2)
+//                    .fallbackToDestructiveMigration()
+                    .build()
+
+            }.also {
+                INSTANCE = it
             }
-            return INSTANCE
-        }
+
+
         private val MIGRATION_1_TO_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
 

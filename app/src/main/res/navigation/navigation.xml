@@ -26,6 +26,6 @@
 
     <fragment
         android:id="@+id/fragment_my_list"
-        tools:layout="@layout/fragment_my_list"
+        tools:layout="@layout/fragment_my_book"
         android:name="net.soy.watermelon.view.MyListFragment"/>
 </navigation>

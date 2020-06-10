@@ -1,7 +1,7 @@
 package net.soy.mylist.db
 
 import androidx.room.*
-import javax.sql.DataSource
+import androidx.paging.DataSource
 
 /**
  * Class: MyBookDao
@@ -13,6 +13,9 @@ import javax.sql.DataSource
 
 @Dao
 interface MyBookDao {
+
+    @Query("SELECT * FROM MyBook ORDER BY created ASC")
+    fun getAll(): DataSource.Factory<Int, MyBook>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(myBook: MyBook)

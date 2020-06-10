@@ -40,7 +40,7 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:onClick="@{clickListener}"
+                android:onClick="@{() -> vm.searchBook()}"
                 android:text="@string/button_text" />
 
         </LinearLayout>

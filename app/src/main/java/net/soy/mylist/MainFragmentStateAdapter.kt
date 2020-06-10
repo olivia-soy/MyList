@@ -3,7 +3,7 @@ package net.soy.mylist
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import net.soy.mylist.ui.all.AllListFragment
-import net.soy.mylist.ui.my.MyListFragment
+import net.soy.mylist.ui.my.MyBookFragment
 import java.lang.IndexOutOfBoundsException
 
 /**
@@ -17,7 +17,7 @@ class MainFragmentStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragme
 
     private val tabFragments: Map<Int, () -> Fragment> = mapOf(
         ALL_LIST_INDEX to { AllListFragment() },
-        MY_LIST_INDEX to { MyListFragment() }
+        MY_LIST_INDEX to { MyBookFragment() }
     )
 
     override fun createFragment(position: Int) = tabFragments[position]?.invoke() ?: throw IndexOutOfBoundsException()
